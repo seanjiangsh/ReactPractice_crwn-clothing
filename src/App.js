@@ -1,9 +1,10 @@
 import React from "react";
-// import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
 import "./App.css";
 
 import HomePage from "./pages/homepage/homepage.component";
 import Directory from "./components/directory/directory.component";
+import ShopPage from "./pages/shop/shop.component";
 
 // for test
 // const HatsPage = () => (
@@ -21,21 +22,22 @@ import Directory from "./components/directory/directory.component";
 
 function App() {
   // fot test
-  // return (
-  //   <div>
-  //     <Route exact path="/" component={HomePage}></Route>
-  //     <Route exact path="/hats" component={HatsPage}></Route>
-  //     <Route path="/hats/:topicID" component={TopicDetail}></Route>
-  //   </div>
-  // );
-
   return (
     <div>
-      <HomePage>
-        <Directory></Directory>
-      </HomePage>
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/shop" component={ShopPage} />
+      </Switch>
     </div>
   );
+
+  // return (
+  //   <div>
+  //     <HomePage>
+  //       <Directory></Directory>
+  //     </HomePage>
+  //   </div>
+  // );
 }
 
 export default App;
