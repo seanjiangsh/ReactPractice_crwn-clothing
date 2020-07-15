@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import { Link } from "react-router-dom";
 import { auth } from "../../firebase/firebase.util";
@@ -18,6 +19,7 @@ const Header = ({ currentUser }) => (
       <Link className="option" to="./shop">
         CONTACT
       </Link>
+      {console.log(currentUser)}
       {currentUser ? (
         <div className="option" onClick={() => auth.signOut()}>
           SIGN OUT
@@ -31,4 +33,10 @@ const Header = ({ currentUser }) => (
   </div>
 );
 
-export default Header;
+// this function could be any name but mapStateToProps is
+// standard with redux codebases
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
+
+export default connect(mapStateToProps)(Header);

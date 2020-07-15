@@ -60,7 +60,11 @@ export default class SignIn extends React.Component {
             <CustomButton type="submit" value="Submit Form">
               Sign In
             </CustomButton>
-            <CustomButton onClick={singInWithGoogle} isGoogleSignIn>
+            <CustomButton
+              type="button"
+              onClick={singInWithGoogle}
+              isGoogleSignIn
+            >
               Sign In with Google{" "}
             </CustomButton>
           </div>
