@@ -7,7 +7,7 @@ import HomePage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shop.component";
 import Header from "./components/header/header.component";
 import SignInAndSignUpPage from "./pages/sign-in-and sign-up/sign-in-and sign-up.component.jsx";
-import { auth } from "./firebase/firebase.util";
+import { auth, createUserProfileDocument } from "./firebase/firebase.util";
 
 // for test
 // const HatsPage = () => (
@@ -32,9 +32,27 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-      this.setState({ currentUser: user });
-      console.log(this.state.currentUser);
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        // setState of user info (id, displayName...) if userAuth is not null
+        const userRef = await createUserProfileDocument(userAuth);
+        userRef.onSnapshot((snapShop) => {
+          this.setState(
+            {
+              currentUser: {
+                id: snapShop.id,
+                ...snapShop.data(),
+              },
+            },
+            () => {
+              console.log(this.state);
+            }
+          );
+        });
+      } else {
+        // set currentUser to null
+        this.setState({ currentUser: userAuth });
+      }
     });
   }
 
