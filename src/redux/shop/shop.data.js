@@ -58,7 +58,6 @@ const SHOP_DATA = {
         imageUrl: "https://i.ibb.co/X2VJP2W/blue-snapback.png",
         price: 16,
       },
-      ,
     ],
   },
   sneakers: {
