@@ -7,7 +7,7 @@ const StriptCheckoutButton = ({ price }) => {
     "pk_test_51HPd44DGvQwgB8HFNHHN6yuoOWTkbQR8h6TDgRgB4AzLdl199vNOyY7jdL9en9jHHZk5WVNnuJwWlV3ZhU3R30O100v8MupaEG";
   const onToken = (token) => {
     console.log(token);
-    alert("Payment Successfule");
+    alert("Payment Successful");
   };
   return (
     <StripeCheckout
